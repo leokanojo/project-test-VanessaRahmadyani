@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ideas - Suitmedia</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header id="header" class="header">
+    <div class="container">
+  <div class="logo">Suitmedia</div>
+  <div class="navbar">
+    <a href="index.html" class="navbar-item">Work</a>
+    <a href="index.html" class="navbar-item">About</a>
+    <a href="index.html" class="navbar-item">Services</a>
+    <a href="index.html" class="navbar-item active">Ideas</a>
+    <a href="index.html" class="navbar-item">Careers</a>
+    <a href="index.html" class="navbar-item">Contact</a>
+  </div>
+</div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-image"></div>
+    <div class="banner-text">
+      <h1>Ideas</h1>
+      <p>Where all our great things begin</p>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <div class="controls">
+    <div class="controls-info">
+      <span id="item-count">Showing 1 - 10 of 100</span>
+    </div>
+    <div class="controls-filter">
+      <label>Show per page:
+        <select id="per-page">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </label>
+      <label>Sort by:
+        <select id="sort">
+          <option value="-published_at">Newest</option>
+          <option value="published_at">Oldest</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <section id="cards" class="cards"></section>
+  
+
+  <!-- Ideas Grid -->
+  <main>
+    <section id="ideas-grid" class="ideas-grid"></section>
+  </main>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

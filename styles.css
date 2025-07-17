@@ -1,0 +1,331 @@
+/* Layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #333;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+  transition: transform 0.3s ease, background 0.3s;
+}
+.header.hide {
+  transform: translateY(-100%);
+}
+.header.scrolled {
+  background: rgba(255,255,255,0.92);
+}
+
+/* Container utama: Logo kiri, Navbar kanan */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: auto;
+}
+.navbar {
+  display: flex;
+  gap: 2rem;
+}
+
+/* Item dalam navbar */
+.navbar-item {
+  font-weight: 500;
+  color: #333;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* Hover dan active state */
+.navbar-item:hover,
+.navbar-item.active {
+  color: #f60;
+}
+
+.navbar-item:hover::after,
+.navbar-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  background: #f60;
+}
+
+/* Responsive: stack di mobile */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar {
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* Banner */
+.banner {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+.banner-image {
+  background: url('./assets/banner.jpg') center/cover no-repeat;
+  height: 120%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  will-change: transform, opacity;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
+}
+.banner-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 2;
+  pointer-events: none;
+}
+.banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: white;
+  clip-path: polygon(0 70%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: 2;
+}
+
+.banner-text {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 100px;
+  transition: transform 0.2s;
+  will-change: transform;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+.banner-text h1 {
+  font-size: 3rem;
+}
+.banner-text p {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* Controls */
+.controls {
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+}
+.controls select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-left: 0.5rem;
+}
+.controls label {
+  margin-left: 1rem;
+}
+
+/* Grid */
+.ideas-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem 2rem 2rem;
+}
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+}
+.card-content {
+  padding: 1rem;
+}
+.card-content .date {
+  color: #888;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+}
+.card-content .title {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.5;
+  height: 4.5em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+  gap: 0.5rem;
+}
+.pagination button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pagination button.active {
+  background: #f60;
+  color: white;
+}
+
+/* Cards */
+.cards {
+  max-width: 1200px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 2rem;
+}
+/* Grid container */
+.cards-row {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: stretch; /* Rata atas dan bawah */
+}
+
+/* Grid item */
+.cards-item {
+  flex: 1 1 0;
+  max-width: 20%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch; /* Isi penuh tinggi parent */
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+  width: 100%;
+}
+
+.cards-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.cards-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+.cards-label {
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+  background: #fafafa;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 4em; /* 3 baris */
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+  .cards-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 992px) {
+  .cards-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .cards-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .cards-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background: url('assets/content1.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .article-content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
